@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
-namespace ValidatedModel.FluentValidation;
+namespace FluentValidation;
 
 /// <summary>
 /// ValidatedModel.FluentValidation extensions

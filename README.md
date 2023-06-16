@@ -25,7 +25,6 @@ $ dotnet add package ValidatedModel.FluentValidation
 
 ```csharp
 using FluentValidation;
-using ValidatedModel.FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddValidatorsFromAssemblyContaining<PersonValidator>();

@@ -7,7 +7,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ValidatedModel.FluentValidation;
+namespace FluentValidation;
 
 /// <summary>
 /// Used on validation in validation filter

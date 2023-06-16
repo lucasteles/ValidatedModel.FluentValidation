@@ -1,5 +1,4 @@
 using FluentValidation;
-using ValidatedModel.FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddValidatorsFromAssemblyContaining<PersonValidator>();
@@ -27,5 +26,3 @@ public class PersonValidator : AbstractValidator<Person>
         RuleFor(p => p.Age).GreaterThanOrEqualTo(18);
     }
 }
-
-

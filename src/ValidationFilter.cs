@@ -2,7 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
-namespace ValidatedModel.FluentValidation;
+namespace FluentValidation;
 
 sealed class ValidatedModelFilter : IEndpointFilter
 {
