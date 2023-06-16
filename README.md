@@ -7,7 +7,6 @@
 
 ![](https://raw.githubusercontent.com/lucasteles/FluentValidation.ValidatedModel/badges/dotnet_version_badge.svg)
 ![](https://img.shields.io/badge/Lang-C%23-green)
-![https://editorconfig.org/](https://img.shields.io/badge/style-EditorConfig-black)
 
 # FluentValidation.ValidatedModel
 
