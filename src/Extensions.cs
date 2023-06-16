@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
-namespace FluentValidation.ValidatedModel;
+namespace ValidatedModel.FluentValidation;
 
 /// <summary>
-/// FluentValidation.ValidatedModel extensions
+/// ValidatedModel.FluentValidation extensions
 /// </summary>
 public static class FluentValidationValidatorExtensions
 {

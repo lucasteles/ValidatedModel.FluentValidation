@@ -1,5 +1,5 @@
 using FluentValidation;
-using FluentValidation.ValidatedModel;
+using ValidatedModel.FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddValidatorsFromAssemblyContaining<PersonValidator>();

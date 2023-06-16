@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.ValidatedModel", "src\FluentValidation.ValidatedModel.csproj", "{143B8D92-AE6B-486A-90B7-117F38F63C88}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidatedModel.FluentValidation", "src\ValidatedModel.FluentValidation.csproj", "{143B8D92-AE6B-486A-90B7-117F38F63C88}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{18DDE0D0-38EA-4936-8AD2-03ED44A38053}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0BAC928C-339F-4FB4-A854-386C901B6B0F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluentValidation.ValidatedModel.Tests", "tests\FluentValidation.ValidatedModel.Tests\FluentValidation.ValidatedModel.Tests.csproj", "{E54ABC87-5074-4EE7-A220-53E46986428A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidatedModel.FluentValidation.Tests", "tests\ValidatedModel.FluentValidation.Tests\ValidatedModel.FluentValidation.Tests.csproj", "{E54ABC87-5074-4EE7-A220-53E46986428A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "_build", "build\_build.csproj", "{6492F1AE-1F55-410A-8052-EBC1572FCD0B}"
 EndProject

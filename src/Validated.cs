@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FluentValidation.ValidatedModel;
+namespace ValidatedModel.FluentValidation;
 
 /// <summary>
 /// Used on validation in validation filter

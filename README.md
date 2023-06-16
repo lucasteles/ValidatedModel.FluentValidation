@@ -1,31 +1,31 @@
-[![CI](https://github.com/lucasteles/FluentValidation.ValidatedModel/actions/workflows/ci.yml/badge.svg)](https://github.com/lucasteles/FluentValidation.ValidatedModel/actions/workflows/ci.yml)
-[![Nuget](https://img.shields.io/nuget/v/FluentValidation.ValidatedModel.svg?style=flat)](https://www.nuget.org/packages/FluentValidation.ValidatedModel)
-![](https://raw.githubusercontent.com/lucasteles/FluentValidation.ValidatedModel/badges/badge_linecoverage.svg)
-![](https://raw.githubusercontent.com/lucasteles/FluentValidation.ValidatedModel/badges/badge_branchcoverage.svg)
-![](https://raw.githubusercontent.com/lucasteles/FluentValidation.ValidatedModel/badges/test_report_badge.svg)
-![](https://raw.githubusercontent.com/lucasteles/FluentValidation.ValidatedModel/badges/lines_badge.svg)
+[![CI](https://github.com/lucasteles/ValidatedModel.FluentValidation/actions/workflows/ci.yml/badge.svg)](https://github.com/lucasteles/ValidatedModel.FluentValidation/actions/workflows/ci.yml)
+[![Nuget](https://img.shields.io/nuget/v/ValidatedModel.FluentValidation.svg?style=flat)](https://www.nuget.org/packages/ValidatedModel.FluentValidation)
+![](https://raw.githubusercontent.com/lucasteles/ValidatedModel.FluentValidation/badges/badge_linecoverage.svg)
+![](https://raw.githubusercontent.com/lucasteles/ValidatedModel.FluentValidation/badges/badge_branchcoverage.svg)
+![](https://raw.githubusercontent.com/lucasteles/ValidatedModel.FluentValidation/badges/test_report_badge.svg)
+![](https://raw.githubusercontent.com/lucasteles/ValidatedModel.FluentValidation/badges/lines_badge.svg)
 
-![](https://raw.githubusercontent.com/lucasteles/FluentValidation.ValidatedModel/badges/dotnet_version_badge.svg)
+![](https://raw.githubusercontent.com/lucasteles/ValidatedModel.FluentValidation/badges/dotnet_version_badge.svg)
 ![](https://img.shields.io/badge/Lang-C%23-green)
 
-# FluentValidation.ValidatedModel
+# ValidatedModel.FluentValidation
 
 Automatically bind and validate models with [FluentValidation](https://github.com/FluentValidation/FluentValidation) on
 ASP.NET
 
 ## Getting started
 
-[NuGet package](https://www.nuget.org/packages/FluentValidation.ValidatedModel) available:
+[NuGet package](https://www.nuget.org/packages/ValidatedModel.FluentValidation) available:
 
 ```ps
-$ dotnet add package FluentValidation.ValidatedModel
+$ dotnet add package ValidatedModel.FluentValidation
 ```
 
 ## How To Use:
 
 ```csharp
 using FluentValidation;
-using FluentValidation.ValidatedModel;
+using ValidatedModel.FluentValidation;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddValidatorsFromAssemblyContaining<PersonValidator>();
