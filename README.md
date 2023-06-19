@@ -31,10 +31,23 @@ builder.Services.AddValidatorsFromAssemblyContaining<PersonValidator>();
 
 var app = builder.Build();
 var api = app.MapGroup("api")
-    // Automatically returns validation problems for failed Validated<T> parameters
+    // Enable validation filter
+    // Automatically validate Validated<T> parameters
     .AddFluentValidationFilter();
 
+// Returns validation problems if validation fail
 api.MapPost("/person", (Validated<Person> person) => $"Hello {person.Value.Name}");
+
+// Skipping auto validation
+api.MapPost("/person-manual", (ILogger<Program> logger, [ManualValidation] Validated<Person> person) =>
+{
+    if (!person.IsValid)
+    {
+        logger.LogInformation("Validation: {Errors}", JsonSerializer.Serialize(person.Errors));
+        return Results.BadRequest();
+    }
+    return $"Hello {person.Value.Name}";
+});
 
 app.Run();
 

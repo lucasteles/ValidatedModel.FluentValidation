@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,6 +22,12 @@ public interface IValidatedModel
     /// Whether validation succeeded
     /// </summary>
     bool IsValid { get; }
+
+
+    /// <summary>
+    /// Model Type
+    /// </summary>
+    Type ModelType { get; }
 }
 
 /// <summary>
@@ -38,6 +43,9 @@ public sealed class Validated<T> : IValidatedModel
 
     /// <inheritdoc />
     public bool IsValid { get; }
+
+    /// <inheritdoc />
+    public Type ModelType { get; } = typeof(T);
 
     /// <inheritdoc />
     public IDictionary<string, string[]> Errors { get; }
@@ -75,17 +83,10 @@ public sealed class Validated<T> : IValidatedModel
             [] => throw new InvalidOperationException(
                 $"No registered IValidator<> for {typeof(T).FullName}"),
             [var single] => single,
-            _ => CombineValidators(allValidators),
+            _ => allValidators.CombineValidators(),
         };
 
         var result = await validator.ValidateAsync(model);
         return new(model, result.IsValid, result.ToDictionary());
-    }
-
-    static IValidator<T> CombineValidators(IEnumerable<IValidator<T>> allValidators)
-    {
-        InlineValidator<T> validator = new();
-        foreach (var v in allValidators) validator.Include(v);
-        return validator;
     }
 }
