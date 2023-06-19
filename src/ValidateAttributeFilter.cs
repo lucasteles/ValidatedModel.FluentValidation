@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -33,7 +33,6 @@ static class ValidateAttributeFilter
                 if (context.HttpContext.RequestServices.GetServices(descriptor.ValidatorType)
                         .FirstOrDefault() is not IValidator validator)
                     continue;
-
 
                 var validationResult = await validator.ValidateAsync(
                     new ValidationContext<object>(argument)

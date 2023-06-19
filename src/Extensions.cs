@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
@@ -60,5 +61,18 @@ public static class FluentValidationValidatorExtensions
         InlineValidator<T> validator = new();
         foreach (var v in allValidators) validator.Include(v);
         return validator;
+    }
+
+    internal static bool IsOptionalOrNullable(this ParameterInfo parameter)
+    {
+        if (parameter.IsOptional) return true;
+
+        if (parameter.ParameterType.IsValueType)
+            return Nullable.GetUnderlyingType(parameter.ParameterType) != null;
+
+        NullabilityInfoContext nullabilityContext = new();
+        var nullabilityInfo = nullabilityContext.Create(parameter);
+
+        return nullabilityInfo.WriteState is NullabilityState.Nullable;
     }
 }

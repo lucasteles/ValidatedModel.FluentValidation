@@ -38,6 +38,9 @@ var api = app.MapGroup("api")
 // Returns validation problems if validation fail
 api.MapPost("/person", (Validated<Person> person) => $"Hello {person.Value.Name}");
 
+// using attribute only
+api.MapPost("/person-simple", ([Validate] Person person) => $"Hello {person.Name}");
+
 // Skipping auto validation
 api.MapPost("/person-manual", (ILogger<Program> logger, [ManualValidation] Validated<Person> person) =>
 {

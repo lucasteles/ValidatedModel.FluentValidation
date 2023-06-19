@@ -2,6 +2,7 @@ using System.Text.Json;
 using FluentValidation;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 using static Microsoft.AspNetCore.Http.TypedResults;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +22,6 @@ var api = app.MapGroup("api")
 api.MapPost("/person", (Validated<Person> person) =>
     Ok($"Hello {person.Value.Name}"));
 
-
 api.MapPost("/person-simple", ([Validate] Person person) =>
     Ok($"Hello {person.Name}"));
 
@@ -40,6 +40,8 @@ api.MapPost("/person-manual",
         return Ok($"Hello {person.Value.Name}");
     });
 
+api.MapGet("/person/{id}", ([Validate, AsParameters] PersonParameters person) => person);
+
 app.Run();
 
 public class Person
@@ -54,5 +56,22 @@ public class PersonValidator : AbstractValidator<Person>
     {
         RuleFor(p => p.Name).MinimumLength(3);
         RuleFor(p => p.Age).GreaterThanOrEqualTo(18);
+    }
+}
+
+public class PersonParameters
+{
+    [FromRoute(Name = "id")] public required int Id { get; init; }
+    [FromQuery] public required string Name { get; init; }
+    [FromQuery] public required int Age { get; init; }
+
+    public class Validator : AbstractValidator<PersonParameters>
+    {
+        public Validator()
+        {
+            RuleFor(p => p.Id).NotEmpty();
+            RuleFor(p => p.Name).MinimumLength(3);
+            RuleFor(p => p.Age).GreaterThanOrEqualTo(18);
+        }
     }
 }

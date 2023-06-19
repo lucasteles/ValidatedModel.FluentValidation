@@ -1,9 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Reflection;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Metadata;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FluentValidation;
@@ -34,7 +38,10 @@ public interface IValidatedModel
 /// Auto validator for T
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public sealed class Validated<T> : IValidatedModel
+public sealed class Validated<T> :
+    IValidatedModel,
+    IEndpointMetadataProvider,
+    IEndpointParameterMetadataProvider
 {
     /// <summary>
     /// Validated model
@@ -89,4 +96,24 @@ public sealed class Validated<T> : IValidatedModel
         var result = await validator.ValidateAsync(model);
         return new(model, result.IsValid, result.ToDictionary());
     }
+
+    /// <inheritdoc />
+    public static void PopulateMetadata(ParameterInfo parameter, EndpointBuilder builder)
+    {
+        if (builder.Metadata.OfType<HttpMethodMetadata>().FirstOrDefault() is not { } httpMeta
+            || httpMeta.HttpMethods.Contains(HttpMethods.Get))
+            return;
+
+        var accepts = builder.Metadata.OfType<IAcceptsMetadata>()
+            .SelectMany(x => x.ContentTypes)
+            .Distinct()
+            .DefaultIfEmpty(MediaTypeNames.Application.Json)
+            .ToArray();
+
+        builder.Metadata.Add(new ParameterMetadata<T>(accepts, parameter.IsOptionalOrNullable()));
+    }
+
+    /// <inheritdoc />
+    public static void PopulateMetadata(MethodInfo method, EndpointBuilder builder) =>
+        builder.Metadata.Add(new ValidationProblemResponseMetadata());
 }
